@@ -74,7 +74,6 @@ export class CLIENT extends Client {
                     this.on(event.name, (...args) => event.execute(...args));
                 }
             } catch (error) {
-                console.error(error);
                 console.log(`올바르지 않은 파일 ${file}은 무시되었습니다. 해당 위치는 Event 타입만 가능합니다!`)
             }
         }
