@@ -5,6 +5,12 @@ import ChatCommand from "../command";
 import config from "../config/bot.json";
 import DiscordEvent from "../event";
 
+const CommandPath = path.join(__dirname, '..', 'command')
+const CommandFolders = readdirSync(CommandPath).filter(folder => !folder.endsWith('.ts'));
+
+const EventPath = path.join(__dirname, '..', 'event')
+const EventFiles = readdirSync(EventPath).filter(file => file.endsWith('.ts') && file != 'index.ts');
+
 export class CLIENT extends Client {
     readonly commands: Collection<string, ChatCommand> = new Collection()
 
@@ -32,13 +38,11 @@ export class CLIENT extends Client {
     }
 
     private initCommands() {
-        const commandPath = path.join(__dirname, '..', 'command')
-        const commandFolders = readdirSync(commandPath).filter(folder => !folder.endsWith('.ts'));
-        for (const folder of commandFolders) {
-            const commandFiles = readdirSync(path.join(commandPath, folder)).filter(file => file.endsWith('.ts'));
+        for (const folder of CommandFolders) {
+            const commandFiles = readdirSync(path.join(CommandPath, folder)).filter(file => file.endsWith('.ts'));
             for (const file of commandFiles) {
                 try {
-                    const loader = require(path.join(commandPath, folder, file)).default;
+                    const loader = require(path.join(CommandPath, folder, file)).default;
                     const command = new loader() as ChatCommand;
                     this.commands.set(command.data.name, command);
                 } catch (error) {
@@ -61,11 +65,9 @@ export class CLIENT extends Client {
     }
 
     private registerEvents() {
-        const eventPath = path.join(__dirname, '..', 'event')
-        const eventFiles = readdirSync(eventPath).filter(file => file.endsWith('.ts') && file != 'index.ts');
-        for (const file of eventFiles) {
+        for (const file of EventFiles) {
             try {
-                const loader = require(path.join(eventPath, file)).default;
+                const loader = require(path.join(EventPath, file)).default;
                 const event = new loader() as DiscordEvent;
 
                 if (event.once) {
