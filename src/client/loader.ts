@@ -4,7 +4,7 @@ class ClientLoader {
     private static instance: ClientLoader | null = null;
     private readonly _client: CLIENT;
 
-    constructor() {
+    private constructor() {
         this._client = new CLIENT();
     }
 
