@@ -61,7 +61,7 @@ export default abstract class DiscordEvent {
 
 ### 클라이언트 불어오기
 
-`'index.ts'를 살표보면 알 수 있습니다.`
+`'index.ts'를 살펴보면 알 수 있습니다.`
 ```typescript
 import loader from "./client/loader";
 loader.client.start().then(() => console.log("Clear?"))
