@@ -10,12 +10,9 @@
 
 ```json
 {
-    "token": "",
-    // 디스코드 봇 토큰
-    "guildId": "",
-    // 디스코드 서버 아이디 (입력하지 않으면, 슬래시 명령어가 공동으로 등록됩니다)
-    "clientId": ""
-    // 디스코드 봇 아이디
+    "token": "", // 디스코드 봇 토큰
+    "guildId": "", // 디스코드 서버 아이디 (입력하지 않으면, 슬래시 명령어가 공동으로 등록됩니다)
+    "clientId": ""// 디스코드 봇 아이디
 }
 ```
 
@@ -29,9 +26,7 @@
 
 ### 명령어 추가
 
-`'command/test/ping.ts`을 참고하면 알 수 있습니다!!
-
-더 자세히 설명하자면, `'command/{category}/{commandName}.ts'`을 생성하고 `ChatCommand`를 상속 받는 클래스를 만듭니다.
+`'command/{category}/{commandName}.ts'`를 생성하고 `ChatCommand`를 상속 받는 클래스를 만듭니다.
 
 ```typescript
 export default abstract class ChatCommand {
@@ -45,8 +40,7 @@ export default abstract class ChatCommand {
 
 ### 이벤트 추가
 
-`'event/{eventName}.ts'`을 참고하면 알 수 있습니다!!
-더 자세히 설명하자면, `'event/{eventName}.ts'`을 생성하고 `Event`를 상속 받는 클래스를 만듭니다.
+`'event/{eventName}.ts'`를 생성하고 `Event`를 상속 받는 클래스를 만듭니다.
 
 ```typescript
 export default abstract class DiscordEvent {
@@ -61,10 +55,10 @@ export default abstract class DiscordEvent {
 
 ### 클라이언트 불어오기
 
-`'index.ts'를 살펴보면 알 수 있습니다.`
+`'index.ts'`를 살펴보면 알 수 있습니다.
 ```typescript
 import loader from "./client/loader";
 loader.client.start().then(() => console.log("Clear?"))
 
-// loader.client는 CLIENT입니다.
+// loader.client는 CLIENT(:client/index)입니다.
 ```
