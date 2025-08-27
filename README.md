@@ -74,6 +74,7 @@ export default class Ready extends DiscordEvent {
 `'index.ts'`를 살펴보면 알 수 있습니다.
 ```typescript
 import loader from "./client/loader";
+
 loader.client.start().then(() => console.log("Clear?"))
 
 // loader.client는 CLIENT(:client/index)입니다.
